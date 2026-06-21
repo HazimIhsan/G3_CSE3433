@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Incident Service Test UI</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f6f9; }
+        .container { max-width: 600px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #d9534f; margin-top: 0; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #d9534f; color: white; border: none; padding: 10px 15px; margin-top: 15px; cursor: pointer; border-radius: 4px; font-size: 16px; width: 100%; }
+        button:hover { background-color: #c9302c; }
+        iframe { width: 100%; height: 220px; border: 1px solid #ddd; background: #fff; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🚨 Report Emergency Incident</h2>
+        <form id="incidentForm" action="incident_service" method="POST" enctype="multipart/form-data" target="responseFrame">
+            <label>Incident Type:</label>
+            <select name="incidentType">
+                <option value="Flash Flood">Flash Flood</option>
+                <option value="Landslide Emergency">Landslide Emergency</option>
+                <option value="Severe Storm">Severe Storm</option>
+                <option value="Medical Evacuation">Medical Evacuation</option>
+            </select>
+
+            <label>Description:</label>
+            <textarea name="description" rows="3" required placeholder="Describe the crisis..."></textarea>
+
+            <label>Latitude Coordinate:</label>
+            <input type="number" step="0.0001" name="latitude" value="5.3302" required>
+
+            <label>Longitude Coordinate:</label>
+            <input type="number" step="0.0001" name="longitude" value="103.1408" required>
+
+            <label>Severity Level:</label>
+            <select name="severity">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High" selected>High</option>
+                <option value="Critical">Critical</option>
+            </select>
+
+            <label>📸 Upload Incident Photographic Evidence:</label>
+            <input type="file" name="incidentImage" accept="image/*" required>
+
+            <button type="submit">Submit SOS Signal to Service</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>System Server Response Pane:</h3>
+        <iframe name="responseFrame"></iframe>
+        <br><br>
+        <a href="incident_service" target="responseFrame"><button style="background-color: #5bc0de;">Fetch Logged Database Records (GET)</button></a>
+    </div>
+
+</body>
+</html>
